@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>shady</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#673ab8">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <script src="https://cdn.jsdelivr.net/npm/@webcomponents/shadydom@1.0.14/shadydom.min.js"></script>
+</head>
+<body>
+  <amp-carousel>
+    <div slot="slot1">Slide 1</div>
+    <div slot="slot2">Slide 2</div>
+    <div slot="slot3">Slide 3</div>
+  </amp-carousel>
+
+<script>
+var carousel = document.querySelector('amp-carousel');
+var shadowRoot = carousel.attachShadow({mode: 'open'});
+var container = document.createElement('div');
+shadowRoot.appendChild(container);
+container.style = 'display: flex; flex-direction: row;';
+for (var i = 1; i <= 3; i++) {
+  var slot = document.createElement('slot');
+  slot.setAttribute('name', 'slot' + i);
+  container.appendChild(slot);
+}
+</script>
+</body>
+</html>
+
+
